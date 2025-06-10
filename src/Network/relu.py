@@ -1,0 +1,27 @@
+import numpy as np
+
+class ReLU():
+    def __init__(self):
+        # Layer name for identification
+        self.name = "ReLU"
+
+        # ReLU has no learnable parameters
+        self.params = []
+        
+        # Store gradient with respect to input
+        self.gradInput = None
+
+    def forward(self, X):
+        # ReLU activation: max(0, x)
+        # Element-wise maximum between input and 0
+        self.output = np.maximum(X, 0)
+        return self.output
+
+    def backward(self, nextgrad):
+        # Copy gradient from next layer
+        self.gradInput = nextgrad.copy()
+        
+        # Zero out gradients where input was <= 0
+        # This implements the ReLU gradient: 1 if x > 0, 0 if x <= 0
+        self.gradInput[self.output <=0] = 0
+        return self.gradInput, []
