@@ -1,27 +1,36 @@
 import numpy as np
+from numpy.typing import NDArray
 
-class ReLU():
-    def __init__(self):
+
+class ReLU:
+    def __init__(self) -> None:
         # Layer name for identification
-        self.name = "ReLU"
+        self.name: str = "ReLU"
 
         # ReLU has no learnable parameters
-        self.params = []
-        
-        # Store gradient with respect to input
-        self.gradInput = None
+        self.params: list[NDArray[np.float64]] = []
 
-    def forward(self, X):
+        # Store gradient with respect to input
+        self.gradInput: NDArray[np.float64] | None = None
+        self.output: NDArray[np.float64] | None = None
+
+    def forward(self, X: NDArray[np.float64]) -> NDArray[np.float64]:
+        """
+        Forward pass of the ReLU activation function.
+        """
         # ReLU activation: max(0, x)
         # Element-wise maximum between input and 0
         self.output = np.maximum(X, 0)
         return self.output
 
-    def backward(self, nextgrad):
+    def backward(
+        self, nextgrad: NDArray[np.float64]
+    ) -> tuple[NDArray[np.float64], list[NDArray[np.float64]]]:
         # Copy gradient from next layer
         self.gradInput = nextgrad.copy()
-        
+
         # Zero out gradients where input was <= 0
         # This implements the ReLU gradient: 1 if x > 0, 0 if x <= 0
-        self.gradInput[self.output <=0] = 0
+        if self.output is not None:
+            self.gradInput[self.output <= 0] = 0
         return self.gradInput, []

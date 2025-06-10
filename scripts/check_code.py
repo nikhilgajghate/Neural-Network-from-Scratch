@@ -27,9 +27,12 @@ def run_command(command: List[str], description: str) -> Tuple[bool, str]:
         return False, str(e)
 
 def main() -> int:
-    src_dir = Path("src")
+    # Get the project root directory
+    project_root = Path(__file__).parent.parent.absolute()
+    src_dir = project_root / "src"
+    
     if not src_dir.exists():
-        print("❌ src directory not found!")
+        print(f"❌ src directory not found at {src_dir}!")
         return 1
 
     # Get all Python files in src directory
@@ -39,16 +42,23 @@ def main() -> int:
         return 1
 
     print(f"Found {len(py_files)} Python files to check")
+    print(f"Checking files in: {src_dir}")
 
     # Run Black formatting check
     black_success, _ = run_command(
-        ["black", "--check", str(src_dir)],
+        ["black", str(src_dir)],
         "Black formatting check"
+    )
+
+    # Run Isort sorting
+    isort_success, _ = run_command(
+        ["isort", "--check", str(src_dir)],
+        "Isort sorting"
     )
 
     # Run Ruff linting
     ruff_success, _ = run_command(
-        ["ruff", "check", str(src_dir)],
+        ["ruff", "check", "--fix", str(src_dir)],
         "Ruff linting"
     )
 
@@ -59,7 +69,7 @@ def main() -> int:
     )
 
     # Return 1 if any check failed
-    return 0 if all([black_success, ruff_success, mypy_success]) else 1
+    return 0 if all([black_success, isort_success, ruff_success, mypy_success]) else 1
 
 if __name__ == "__main__":
     sys.exit(main()) 

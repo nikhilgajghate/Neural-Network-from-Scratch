@@ -2,17 +2,13 @@
 name = "Neural Network from scratch"
 version = "0.1.0"
 description = "Neural Network from scratch using Numpy and Keras"
-requires-python = ">=3.8"
+requires-python = ">=3.11"
 dependencies = [
     "numpy",
     "keras",
     "tensorflow",
     "matplotlib",
     "pydantic",
-    "black",
-    "mypy",
-    "ruff",
-    "hatchling"
 ]
 
 [build-system]
@@ -21,13 +17,13 @@ build-backend = "hatchling.build"
 
 [tool.black]
 line-length = 88
-target-version = ["py38"]
+target-version = ["py311"]
 include = '\.pyi?$'
 
 [tool.ruff]
 line-length = 88
-target-version = "py38"
-select = [
+target-version = "py311"
+lint.select = [
     "E",   # pycodestyle errors
     "W",   # pycodestyle warnings
     "F",   # pyflakes
@@ -35,13 +31,13 @@ select = [
     "C",   # flake8-comprehensions
     "B",   # flake8-bugbear
 ]
-ignore = []
+lint.ignore = []
 
-[tool.ruff.isort]
+[tool.ruff.lint.isort]
 known-first-party = ["src"]
 
 [tool.mypy]
-python_version = "3.8"
+python_version = "3.11"
 warn_return_any = true
 warn_unused_configs = true
 disallow_untyped_defs = true
@@ -53,6 +49,8 @@ warn_redundant_casts = true
 warn_unused_ignores = true
 warn_no_return = true
 warn_unreachable = true
+explicit_package_bases = true
+namespace_packages = true
 
 [[tool.mypy.overrides]]
 module = ["tensorflow.*", "keras.*"]
