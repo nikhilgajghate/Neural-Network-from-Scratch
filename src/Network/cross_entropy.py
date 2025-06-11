@@ -1,7 +1,7 @@
 import numpy as np
 from numpy.typing import NDArray
 
-from src.helpers import softmax
+from src.Network.softmax import softmax
 
 
 class CrossEntropy:

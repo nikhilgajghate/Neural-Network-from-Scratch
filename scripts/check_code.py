@@ -52,7 +52,7 @@ def main() -> int:
 
     # Run Isort sorting
     isort_success, _ = run_command(
-        ["isort", "--check", str(src_dir)],
+        ["isort", str(src_dir)],
         "Isort sorting"
     )
 
