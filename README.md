@@ -43,7 +43,7 @@ python src/main.py --dataset mnist --visualize True
 - `--dataset`: Dataset to use (currently supports "mnist"). Will consider adding CIFAR-10, CIFAR-100, and Fashion MNIST
 - `--visualize`: Whether to visualize the dataset (default: False)
 
-## 🏗️ Project Structure
+## Project Structure
 
 ```
 MNIST/
@@ -68,7 +68,7 @@ MNIST/
 └── README.md                  # This file
 ```
 
-## 🧠 Network Architecture
+## Network Architecture
 
 The default network architecture consists of:
 
@@ -84,7 +84,7 @@ The default network architecture consists of:
 - **Learning Rate**: 0.01
 - **Momentum**: 0.9
 
-## 📚 Component Documentation
+## Component Documentation
 
 ### Network Class
 
@@ -215,7 +215,7 @@ The `Softmax` class implements the softmax activation function for multi-class c
   - `[]`: Empty list (no parameters to update)
 - **Description:** Computes the gradient of the softmax function for backpropagation.
 
-## 🔧 Training Process
+## Training Process
 
 ### 1. Data Loading
 - Loads MNIST dataset using Keras
@@ -240,13 +240,6 @@ The `Softmax` class implements the softmax activation function for multi-class c
 - **Validation**: Makes predictions on test set
 - **Metrics**: Computes accuracy and confusion matrix
 - **Visualization**: Plots training curves and confusion matrix
-
-## 📊 Expected Performance
-
-With the default hyperparameters, the network typically achieves:
-- **Training Accuracy**: ~95-98%
-- **Test Accuracy**: ~92-95%
-- **Training Time**: ~2-5 minutes (depending on hardware)
 
 ## 🛠️ Development
 
@@ -275,20 +268,6 @@ mypy src/ scripts/
 python scripts/check_code.py
 ```
 
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Run quality checks: `python scripts/check_code.py`
-5. Submit a pull request
-
 ## 📄 License
 
 This project is open source and available under the [MIT License](LICENSE).
-
-## 🙏 Acknowledgments
-
-- MNIST dataset creators
-- NumPy and Keras communities
-- Deep learning education resources that inspired this implementation 
