@@ -4,13 +4,8 @@ from numpy.typing import NDArray
 
 class ReLU:
     def __init__(self) -> None:
-        # Layer name for identification
         self.name: str = "ReLU"
-
-        # ReLU has no learnable parameters
         self.params: list[NDArray[np.float64]] = []
-
-        # Store gradient with respect to input
         self.gradInput: NDArray[np.float64] | None = None
         self.output: NDArray[np.float64] | None = None
 
@@ -26,7 +21,6 @@ class ReLU:
     def backward(
         self, nextgrad: NDArray[np.float64]
     ) -> tuple[NDArray[np.float64], list[NDArray[np.float64]]]:
-        # Copy gradient from next layer
         self.gradInput = nextgrad.copy()
 
         # Zero out gradients where input was <= 0

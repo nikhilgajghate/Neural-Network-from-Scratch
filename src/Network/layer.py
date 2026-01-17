@@ -7,7 +7,6 @@ from src.Network.linear import Linear
 from src.Network.relu import ReLU
 
 
-# Define a protocol for layers that have params
 @runtime_checkable
 class Layer(Protocol):
     name: str
@@ -22,7 +21,6 @@ class Layer(Protocol):
         pass
 
 
-# Define a protocol for layers that have W and b
 @runtime_checkable
 class LayerWithWeights(Layer, Protocol):
     W: NDArray[np.float64]
@@ -30,8 +28,5 @@ class LayerWithWeights(Layer, Protocol):
     name: str
 
 
-# Define a type variable for layers
 T = TypeVar("T", bound=Union[Linear, ReLU])
-
-# Define the concrete layer types
 ConcreteLayer = Union[Linear, ReLU]

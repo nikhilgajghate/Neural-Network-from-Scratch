@@ -2,22 +2,12 @@
 
 A complete implementation of a neural network from scratch using NumPy for the MNIST digit classification task. This project demonstrates the fundamentals of deep learning by implementing all core components including forward/backward propagation, optimization algorithms, and loss functions.
 
-## 🚀 Features
-
-- **Pure NumPy Implementation**: No deep learning frameworks - everything built from scratch
-- **MNIST Dataset Support**: Handles the classic MNIST digit classification dataset
-- **Modular Architecture**: Clean separation of network components (layers, activations, loss functions)
-- **Momentum SGD**: Implements momentum-based stochastic gradient descent
-- **Visualization**: Built-in plotting for training progress and confusion matrices
-- **Type Safety**: Full type hints and mypy integration
-- **Code Quality**: Black formatting, and Ruff linting
-
-## 📋 Requirements
+## Requirements
 
 - Python 3.11+
 - See `requirements.txt` for all dependencies
 
-## 🛠️ Installation
+## Installation
 
 1. **Clone the repository**:
    ```bash
@@ -30,7 +20,7 @@ A complete implementation of a neural network from scratch using NumPy for the M
    pip install -r requirements.txt
    ```
 
-## 🎯 Usage
+## Usage
 
 ### Basic Training
 

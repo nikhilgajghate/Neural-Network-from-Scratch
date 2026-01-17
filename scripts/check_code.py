@@ -4,8 +4,10 @@ import sys
 from pathlib import Path
 from typing import List, Tuple
 
+"""
+    Run a command and return its success status and output
+"""
 def run_command(command: List[str], description: str) -> Tuple[bool, str]:
-    """Run a command and return its success status and output."""
     print(f"\n=== Running {description} ===")
     try:
         result = subprocess.run(
@@ -15,28 +17,26 @@ def run_command(command: List[str], description: str) -> Tuple[bool, str]:
             check=False
         )
         if result.returncode == 0:
-            print(f"✅ {description} passed!")
+            print(f"{description} passed!")
             return True, result.stdout
         else:
-            print(f"❌ {description} failed!")
+            print(f"{description} failed!")
             print(result.stdout)
             print(result.stderr)
             return False, result.stderr
     except Exception as e:
-        print(f"❌ Error running {description}: {str(e)}")
+        print(f"Error running {description}: {str(e)}")
         return False, str(e)
 
 def main() -> int:
-    # Get the project root directory
-    project_root = Path(__file__).parent.parent.absolute()
+    project_root = Path(__file__).parent.parent.absolute() # Get the project root directory
     src_dir = project_root / "src"
     
     if not src_dir.exists():
-        print(f"❌ src directory not found at {src_dir}!")
+        print(f"src directory not found at {src_dir}!")
         return 1
 
-    # Get all Python files in src directory
-    py_files = list(src_dir.rglob("*.py"))
+    py_files = list(src_dir.rglob("*.py")) # Get all Python files in src directory
     if not py_files:
         print("❌ No Python files found in src directory!")
         return 1
@@ -44,7 +44,7 @@ def main() -> int:
     print(f"Found {len(py_files)} Python files to check")
     print(f"Checking files in: {src_dir}")
 
-    # Run Black formatting check
+    # Run formatting
     black_success, _ = run_command(
         ["black", str(src_dir)],
         "Black formatting check"
@@ -56,13 +56,13 @@ def main() -> int:
         "Isort sorting"
     )
 
-    # Run Ruff linting
+    # Run linting
     ruff_success, _ = run_command(
         ["ruff", "check", "--fix", str(src_dir)],
         "Ruff linting"
     )
 
-    # Run Mypy type checking
+    # Run type checking
     mypy_success, _ = run_command(
         ["mypy", str(src_dir)],
         "Mypy type checking"
