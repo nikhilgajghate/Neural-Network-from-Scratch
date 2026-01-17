@@ -241,7 +241,7 @@ The `Softmax` class implements the softmax activation function for multi-class c
 - **Metrics**: Computes accuracy and confusion matrix
 - **Visualization**: Plots training curves and confusion matrix
 
-## 🛠️ Development
+## Development
 
 ### Code Quality Tools
 
